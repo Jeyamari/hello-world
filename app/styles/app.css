@@ -1,3 +1,7 @@
 h1 {
 color: black;
 }
+section {
+    display: inline-block;
+    padding: 20px;
+}
