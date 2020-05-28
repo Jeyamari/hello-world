@@ -1,39 +1,48 @@
-<section>
-  <button {{action "getMovies"}}>Get Movies</button>
+<section class="mirage-section">
+  <section> 
+    <h3>Get Movies</h3>
+    <button {{action "getMovies"}}>Get Movies</button>
+  </section>
+  <section>
+    <h3>Get Directors</h3>
+    <button {{action "getDirectors"}}>Get Directors</button>
+  </section>
+  <section>
+    <h3>Create A Movie</h3>
+    <button {{action "postMovies"}}>Create Movies</button>
+  </section>
+  <section>
+    <h3>Display Particular Movie</h3>
+    <h5>Enter Movie Id: </h5>{{input value=name enter=(action "getMoviesById")}}
+    (Click Enter)
+  </section>
+  <section>
+    <h3>Change a Movie Details</h3>
+    <br><h5>Enter Movie Id: </h5>{{input value=movieid enter=(action "updateMoviesById")}}
+    (Click Enter)
+  </section>
+  <section>
+    <h3>Delete a Movie</h3>
+    <h5>Enter Movie Id: </h5>{{input value=delid enter=(action "deleteMoviesById")}}
+    (Click Enter)
+  </section><br>
 </section>
-<section>
-  <button {{action "getDirectors"}}>Get Directors</button>
+<section class= "mirage-section" style="width: 500px">
+  {{#each getValues as |movies|}}
+    {{movies.id}}&emsp;
+    {{movies.type}}&emsp;
+    {{movies.attributes.title}}&emsp;
+    {{movies.attributes.year}}<br>
+  {{/each}}<br>
+  {{#each getDirector as |directors|}}
+    {{directors.id}}
+    {{directors.type}}
+    {{directors.attributes.first-name}}
+    {{directors.attributes.last-name}}
+    {{directors.attributes.awards}}<br>
+  {{/each}}
+  {{getValues.id}}
+  {{getValues.type}}
+  {{getValues.attributes.title}}
+  {{getValues.attributes.year}}
 </section>
-<section>
-  <button {{action "postMovies"}}>Create Movies</button>
-</section>
-<section>
-  <button {{action "getMoviesById" "11"}}>Get Movie 11</button>
-  {{getMovie.id}}
-  {{getMovie.type}}
-  {{getMovie.attributes.title}}
-  {{getMovie.attributes.year}}
-</section>
-<section>
-  <button {{action "updateMoviesById" "11"}}>Update Movie 11</button>
-  {{getMovie.id}}
-  {{getMovie.type}}
-  {{getMovie.attributes.title}}
-  {{getMovie.attributes.year}}
-</section>
-<section>
-  <button {{action "deleteMoviesById" "11"}}>Delete Movie 11</button>
-</section><br>
-{{#each getMovie as |movies|}}
-  {{movies.id}}
-  {{movies.type}}
-  {{movies.attributes.title}}
-  {{movies.attributes.year}}<br>
-{{/each}}<br>
-{{#each getDirector as |directors|}}
-  {{directors.id}}
-  {{directors.type}}
-  {{directors.attributes.first-name}}
-  {{directors.attributes.last-name}}
-  {{directors.attributes.awards}}<br>
-{{/each}}
