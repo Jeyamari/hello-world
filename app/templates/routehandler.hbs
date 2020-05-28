@@ -2,6 +2,9 @@
   <button {{action "getMovies"}}>Get Movies</button>
 </section>
 <section>
+  <button {{action "getDirectors"}}>Get Directors</button>
+</section>
+<section>
   <button {{action "postMovies"}}>Create Movies</button>
 </section>
 <section>
@@ -20,10 +23,17 @@
 </section>
 <section>
   <button {{action "deleteMoviesById" "11"}}>Delete Movie 11</button>
-</section>
+</section><br>
 {{#each getMovie as |movies|}}
   {{movies.id}}
   {{movies.type}}
   {{movies.attributes.title}}
   {{movies.attributes.year}}<br>
+{{/each}}<br>
+{{#each getDirector as |directors|}}
+  {{directors.id}}
+  {{directors.type}}
+  {{directors.attributes.first-name}}
+  {{directors.attributes.last-name}}
+  {{directors.attributes.awards}}<br>
 {{/each}}
