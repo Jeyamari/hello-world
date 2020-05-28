@@ -1,11 +1,18 @@
 import Controller from '@ember/controller';
 export default Controller.extend({
   getMovie: '',
+  getDirector: '',
   actions: {
     async getMovies() {
       let response = await fetch("/api/movies");
       let result = await response.json();
       this.set('getMovie', result.data);
+      return result.data;
+    },
+    async getDirectors() {
+      let response = await fetch("/api/directors");
+      let result = await response.json();
+      this.set('getDirector', result.data);
       return result.data;
     },
     async postMovies() {

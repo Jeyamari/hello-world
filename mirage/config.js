@@ -1,3 +1,4 @@
+import faker from 'faker';
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -30,8 +31,15 @@ export default function() {
   });
   this.post('api/movies', (schema, request) => {
     let attrs = JSON.parse(request.requestBody);
-    schema.movies.create(attrs);
+    let brad_bird = schema.directors.create({ "id": faker.random.number() % 9});
+    schema.movies.create({
+      title: JSON.parse(request.requestBody).title,
+      year: JSON.parse(request.requestBody).year,
+      director: brad_bird
+    });
+    console.log(schema.movies.all());
   });
+  this.get('api/directors');
   this.get('api/movies/:id', (schema, request) => {
     let id = request.params.id; 
     return schema.movies.find(id);
