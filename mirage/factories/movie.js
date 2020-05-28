@@ -4,8 +4,9 @@ export default Factory.extend({
     id(i) {
         return i;
     },
-    year: 2018,
+    'year': 2018,
     title() {
         return faker.name.firstName();
-    }
+    },
+    
 });

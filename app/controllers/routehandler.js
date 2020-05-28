@@ -1,12 +1,12 @@
 import Controller from '@ember/controller';
 export default Controller.extend({
-  getMovie: '',
+  getValues: '',
   getDirector: '',
   actions: {
     async getMovies() {
       let response = await fetch("/api/movies");
       let result = await response.json();
-      this.set('getMovie', result.data);
+      this.set('getValues', result.data);
       return result.data;
     },
     async getDirectors() {
@@ -24,11 +24,12 @@ export default Controller.extend({
         },
         body: JSON.stringify(data),              
       });
+      this.send('getMovies');
     },
     async getMoviesById(id) {
       let response = await fetch("/api/movies/" + id);
       let result = await response.json();
-      this.set('getMovie', result.data);
+      this.set('getValues', result.data);
       return result.data;    
     },
     async updateMoviesById(id) {
@@ -40,11 +41,13 @@ export default Controller.extend({
         },
         body: JSON.stringify(data),
       });
+      this.send('getMovies');
     },
     async deleteMoviesById(id) {
       await fetch("api/movies/" + id, {
         method: 'DELETE' 
       });
+      this.send('getMovies');
     }
   },
 });
